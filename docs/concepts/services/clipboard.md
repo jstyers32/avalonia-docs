@@ -35,11 +35,11 @@ Task SetTextAsync(string? text)
 ```
 
 :::note
-Unlikely different Win32 clipboard APIs, Avalonia clipboard always flushes data and is never delayed.
+Unlike different Win32 clipboard APIs, Avalonia clipboard always flushes data and is never delayed.
 :::
 
 ### ClearAsync()
-Clears the clipboard asynchronously flushes it immediately.
+Clears the clipboard and asynchronously flushes it immediately.
 
 ```cs
 Task ClearAsync()
@@ -53,7 +53,7 @@ Task SetDataObjectAsync(IDataObject data)
 ```
 
 :::note
-Unlikely different Win32 clipboard APIs, Avalonia clipboard always flushes data and is never delayed.
+Unlike different Win32 clipboard APIs, Avalonia clipboard always flushes data and is never delayed.
 :::
 
 ### GetFormatsAsync()
