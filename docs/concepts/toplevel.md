@@ -4,11 +4,11 @@ description: CONCEPTS
 
 # The TopLevel
 
-The TopLevel act as the visual root, and is the base class for all top level controls, eg. `Window`. It handles scheduling layout, styling and rendering as well as keeping track of the client size. Most services are accessed through the TopLevel.
+The TopLevel acts as the visual root, and is the base class for all top level controls, eg. `Window`. It handles scheduling layout, styling and rendering, as well as keeping track of the client size. Most services are accessed through the TopLevel instance.
 
 ## Getting the TopLevel
 
-Here are two common ways to access TopLevel instance.
+Here are two common ways to access TopLevel instance:
 
 ### Using TopLevel.GetTopLevel
 
@@ -16,18 +16,18 @@ You can use the static `GetTopLevel` method of the TopLevel class to get the top
 
 ```cs
 var topLevel = TopLevel.GetTopLevel(control);
-// Here you can reference various services like Clipboard or StorageProvider from topLevel instance.
+// Here you can reference various services like Clipboard or StorageProvider from the topLevel instance.
 ```
 
 This method can be helpful if you're working within a user control or a lower-level component and need access to the TopLevel services.
 
 :::note
-If `TopLevel.GetTopLevel` returns null, likely control is not yet attached to the root. To ensure control is attached, you should handle `Control.Loaded` and `Control.Unloaded` events and keep track of current top level from these events.
+If `TopLevel.GetTopLevel` returns null, it is likely the control is not yet attached to the root. To ensure the control is attached, you should handle `Control.Loaded` and `Control.Unloaded` events and keep track of current top level instance from these events.
 :::
 
 ### Using the Window Class
 
-Since the`Window` class inherits from `TopLevel`, you can directly access services from an instance of `Window`:
+Since the `Window` class inherits from `TopLevel`, you can directly access services from an instance of `Window`:
 
 ```cs
 var topLevel = window;
@@ -71,7 +71,7 @@ IFocusManager? FocusManager { get; }
 
 ### FrameSize
 
-Gets the total size of the top level including system frame if presented.
+Gets the total size of the top level instance, including system frame if presented.
 
 ```cs
 Size? FrameSize { get; }
@@ -145,7 +145,7 @@ IReadOnlyList<WindowTransparencyLevel> TransparencyLevelHint { get; set; }
 
 ### BackRequested
 
-Occurs when physical Back Button is pressed or a back navigation has been requested.
+Occurs when a physical Back Button is pressed or a back navigation has been requested.
 
 ```cs
 event EventHandler<RoutedEventArgs> BackRequested { add; remove; }
@@ -184,7 +184,7 @@ Gets the `TopLevel` for which the given `Visual` is hosted in.
 #### Parameters
 
 `control`
-The visual to query its TopLevel
+The visual to query its TopLevel instance.
 
 ```cs
 static TopLevel? GetTopLevel(Visual? visual)
@@ -192,7 +192,7 @@ static TopLevel? GetTopLevel(Visual? visual)
 
 ### RequestAnimationFrame
 
-Enqueues a callback to be called on the next animation tick
+Enqueues a callback to be called on the next animation tick.
 
 ```cs
 void RequestAnimationFrame(Action<TimeSpan> action)
@@ -200,7 +200,7 @@ void RequestAnimationFrame(Action<TimeSpan> action)
 
 ### RequestPlatformInhibition
 
-Requests a `PlatformInhibitionType` to be inhibited. The behavior remains inhibited until the return value is disposed. The available set of `PlatformInhibitionType`s depends on the platform. If a behavior is inhibited on a platform where this type is not supported the request will have no effect.
+Requests a platform behavior to be inhibited. The behavior remains inhibited until the return value is disposed. The available set of `PlatformInhibitionType`s depends on the platform. If a behavior is inhibited on a platform where this type is not supported the request will have no effect.
 
 ```cs
 async Task<IDisposable> RequestPlatformInhibition(PlatformInhibitionType type, string reason)
